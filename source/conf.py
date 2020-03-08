@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'MC1.12.2ModTutorialDocs-Sphinx'
+project = 'Minecraft 1.12.2 Forge Mod 开发教程-Sphinx'
 copyright = '2020, squid233'
 author = 'squid233'
 
@@ -30,7 +30,8 @@ release = '1.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
+extensions = ['recommonmark',
+              'sphinx_markdown_tables'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
