@@ -1,4 +1,4 @@
-3.Forge MDK包下载
+Forge MDK包下载
 =================
 
 IDEA安装好后，该下载Forge
