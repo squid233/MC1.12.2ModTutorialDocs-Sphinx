@@ -1,20 +1,10 @@
-.. MC1.12.2ModTutorialDocs-Sphinx documentation master file, created by
-   sphinx-quickstart on Sun Mar  8 21:49:56 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Minecraft 1.12.2 Forge Mod 开发教程重写版
+=========================================
 
-Welcome to MC1.12.2ModTutorialDocs-Sphinx's documentation!
-==========================================================
+| 首先声明一下，编写这篇教程是为了让更多人能够真正做出一个Mod来。
+| 如果你看过其他人的教程，你会发现这些教程要么杂碎，要么作者弃坑。而这篇教程将会帮助你在自己的Mod中添加各种新特性。
+| 仓库地址：https://github.com/squid233/MC1.12.2ModTutorial
+| 如果你对源码感兴趣的话可以看一下。
+| 如果还有问题可以在MCBBS私聊我，用户名：squid233
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+Copyright ©2020 squid233
