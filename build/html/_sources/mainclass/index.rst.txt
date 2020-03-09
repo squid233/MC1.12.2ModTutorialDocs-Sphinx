@@ -4,7 +4,7 @@
 这一章介绍了如何配置主类、Mod信息与代理。
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :numbered: 2
 
    01_mcmodinfo
