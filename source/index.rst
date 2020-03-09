@@ -6,5 +6,3 @@ Minecraft 1.12.2 Forge Mod 开发教程重写版
 | 仓库地址：https://github.com/squid233/MC1.12.2ModTutorial
 | 如果你对源码感兴趣的话可以看一下。
 | 如果还有问题可以在MCBBS私聊我，用户名：squid233
-
-Copyright ©2020 squid233
