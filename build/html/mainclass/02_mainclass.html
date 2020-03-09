@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 主类 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="1. mcmod.info" href="01_mcmodinfo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Minecraft 1.12.2 Forge Mod 开发教程-Sphinx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">主类、Mod信息与代理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_mcmodinfo.html">1. mcmod.info</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 主类</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Minecraft 1.12.2 Forge Mod 开发教程-Sphinx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">主类、Mod信息与代理</a> &raquo;</li>
+        
+      <li><span class="section-number">2. </span>主类</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mainclass/02_mainclass.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">2. </span>主类<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>每个Mod都会有一个主类，每一个主类都会有一个<code class="docutils literal notranslate"><span class="pre">&#64;Mod</span></code>注解。下面这个例子展示出了<code class="docutils literal notranslate"><span class="pre">&#64;Mod</span></code>注解如何使用（注：以后所有的例子都会以ExampleMod为准，请根据自己的需求更改）：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Mod</span><span class="p">(</span><span class="n">modid</span> <span class="o">=</span> <span class="n">ExampleMod</span><span class="o">.</span><span class="n">MODID</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">ExampleMod</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="n">ExampleMod</span><span class="o">.</span><span class="n">VERSION</span><span class="p">)</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">ExampleMod</span>
+<span class="p">{</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="n">String</span> <span class="n">MODID</span> <span class="o">=</span> <span class="s2">&quot;examplemod&quot;</span><span class="p">;</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="n">String</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s2">&quot;Example Mod&quot;</span><span class="p">;</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="n">String</span> <span class="n">VERSION</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>MODID, NAME,
+VERSION就不必解释了。接下来我们在<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">final</span> <span class="pre">String</span> <span class="pre">VERSION</span> <span class="pre">=</span> <span class="pre">&quot;1.0&quot;;</span></code>这段代码的后面添加上下面的代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Mod</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span><span class="n">ExampleMod</span><span class="o">.</span><span class="n">MODID</span><span class="p">)</span>
+    <span class="n">private</span> <span class="n">static</span> <span class="n">ExampleMod</span> <span class="n">instance</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>这段代码用于保存Mod的实例。</p>
+<p>然后创建两个新类，分别是<code class="docutils literal notranslate"><span class="pre">com.example.examplemod.proxy.ClientProxy</span></code>和<code class="docutils literal notranslate"><span class="pre">com.example.examplemod.proxy.CommonProxy</span></code>。</p>
+<p>在<code class="docutils literal notranslate"><span class="pre">CommonProxy</span></code>中添加如下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">void</span> <span class="n">preInit</span><span class="p">(</span><span class="n">FMLPreInitializationEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+
+<span class="n">public</span> <span class="n">void</span> <span class="n">init</span><span class="p">(</span><span class="n">FMLInitializationEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>然后在ClientProxy中添加如下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="n">public</span> <span class="n">void</span> <span class="n">preInit</span><span class="p">(</span><span class="n">FMLPreInitializationEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">super</span><span class="o">.</span><span class="n">preInit</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nd">@Override</span>
+<span class="n">public</span> <span class="n">void</span> <span class="n">init</span><span class="p">(</span><span class="n">FMLInitializationEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">super</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>注意：<code class="docutils literal notranslate"><span class="pre">ClientProxy</span></code>继承于<code class="docutils literal notranslate"><span class="pre">CommonProxy</span></code>。</p>
+<p>现在回到<code class="docutils literal notranslate"><span class="pre">ExampleMod</span></code>类，在<code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">static</span> <span class="pre">ExampleMod</span> <span class="pre">instance;</span></code>的下面加上如下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@SidedProxy</span>
+        <span class="p">(</span><span class="n">clientSide</span> <span class="o">=</span> <span class="s2">&quot;com.example.examplemod.proxy.ClientProxy&quot;</span><span class="p">,</span>
+         <span class="n">serverSide</span> <span class="o">=</span> <span class="s2">&quot;com.example.examplemod.proxy.CommonProxy&quot;</span>
+        <span class="p">)</span>
+<span class="n">private</span> <span class="n">static</span> <span class="n">CommonProxy</span> <span class="n">proxy</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>接下来在主类的<code class="docutils literal notranslate"><span class="pre">preInit</span></code>方法中加上<code class="docutils literal notranslate"><span class="pre">proxy.preInit(event);</span></code>，在<code class="docutils literal notranslate"><span class="pre">init</span></code>方法中加上<code class="docutils literal notranslate"><span class="pre">proxy.init(event);</span></code>。</p>
+<hr class="docutils" />
+<p>你的Mod最基本的已经配置完成，很快我们将做出第一个物品。</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="01_mcmodinfo.html" class="btn btn-neutral float-left" title="1. mcmod.info" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, squid233
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
