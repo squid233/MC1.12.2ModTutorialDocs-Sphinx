@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 示例代码 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="物品" href="../item/index.html" />
+    <link rel="prev" title="2. 主类" href="02_mainclass.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Minecraft 1.12.2 Forge Mod 开发教程-Sphinx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">主类、Mod信息与代理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_mcmodinfo.html">1. mcmod.info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_mainclass.html">2. 主类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 示例代码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examplemod-java">3.1. ExampleMod.java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commonproxy-java">3.2. CommonProxy.java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clientproxy-java">3.3. ClientProxy.java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../item/index.html">物品</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Minecraft 1.12.2 Forge Mod 开发教程-Sphinx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">主类、Mod信息与代理</a> &raquo;</li>
+        
+      <li><span class="section-number">3. </span>示例代码</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mainclass/03_examplecode.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">3. </span>示例代码<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="examplemod-java">
+<h2><span class="section-number">3.1. </span>ExampleMod.java<a class="headerlink" href="#examplemod-java" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">com</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">examplemod</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">com.example.examplemod.proxy.CommonProxy</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraft.init.Blocks</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.Mod</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.Mod.EventHandler</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.SidedProxy</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.event.FMLInitializationEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.event.FMLPreInitializationEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.logging.log4j.Logger</span><span class="p">;</span>
+
+<span class="nd">@Mod</span><span class="p">(</span><span class="n">modid</span> <span class="o">=</span> <span class="n">ExampleMod</span><span class="o">.</span><span class="n">MODID</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">ExampleMod</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="n">ExampleMod</span><span class="o">.</span><span class="n">VERSION</span><span class="p">)</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">ExampleMod</span>
+<span class="p">{</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="n">String</span> <span class="n">MODID</span> <span class="o">=</span> <span class="s2">&quot;examplemod&quot;</span><span class="p">;</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="n">String</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s2">&quot;Example Mod&quot;</span><span class="p">;</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="n">String</span> <span class="n">VERSION</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span><span class="p">;</span>
+
+    <span class="nd">@Mod</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span><span class="n">ExampleMod</span><span class="o">.</span><span class="n">MODID</span><span class="p">)</span>
+    <span class="n">private</span> <span class="n">static</span> <span class="n">ExampleMod</span> <span class="n">instance</span><span class="p">;</span>
+
+    <span class="nd">@SidedProxy</span>
+            <span class="p">(</span><span class="n">clientSide</span> <span class="o">=</span> <span class="s2">&quot;com.example.examplemod.proxy.ClientProxy&quot;</span><span class="p">,</span>
+            <span class="n">serverSide</span> <span class="o">=</span> <span class="s2">&quot;com.example.examplemod.proxy.CommonProxy&quot;</span>
+            <span class="p">)</span>
+    <span class="n">private</span> <span class="n">static</span> <span class="n">CommonProxy</span> <span class="n">proxy</span><span class="p">;</span>
+
+    <span class="n">private</span> <span class="n">static</span> <span class="n">Logger</span> <span class="n">logger</span><span class="p">;</span>
+
+    <span class="nd">@EventHandler</span>
+    <span class="n">public</span> <span class="n">void</span> <span class="n">preInit</span><span class="p">(</span><span class="n">FMLPreInitializationEvent</span> <span class="n">event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">getModLog</span><span class="p">();</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;preInit&quot;</span><span class="p">);</span>
+        <span class="n">proxy</span><span class="o">.</span><span class="n">preInit</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@EventHandler</span>
+    <span class="n">public</span> <span class="n">void</span> <span class="n">init</span><span class="p">(</span><span class="n">FMLInitializationEvent</span> <span class="n">event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">//</span> <span class="n">some</span> <span class="n">example</span> <span class="n">code</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;DIRT BLOCK &gt;&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">Blocks</span><span class="o">.</span><span class="n">DIRT</span><span class="o">.</span><span class="n">getRegistryName</span><span class="p">());</span>
+        <span class="n">proxy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="commonproxy-java">
+<h2><span class="section-number">3.2. </span>CommonProxy.java<a class="headerlink" href="#commonproxy-java" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">com</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">examplemod</span><span class="o">.</span><span class="n">proxy</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">com.example.examplemod.register.</span><span class="o">*</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.event.FMLInitializationEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.event.FMLPreInitializationEvent</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">CommonProxy</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">void</span> <span class="n">preInit</span><span class="p">(</span><span class="n">FMLPreInitializationEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+
+    <span class="n">public</span> <span class="n">void</span> <span class="n">init</span><span class="p">(</span><span class="n">FMLInitializationEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clientproxy-java">
+<h2><span class="section-number">3.3. </span>ClientProxy.java<a class="headerlink" href="#clientproxy-java" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">com</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">examplemod</span><span class="o">.</span><span class="n">proxy</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.event.FMLInitializationEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.event.FMLPreInitializationEvent</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">ClientProxy</span> <span class="n">extends</span> <span class="n">CommonProxy</span><span class="p">{</span>
+    <span class="nd">@Override</span>
+    <span class="n">public</span> <span class="n">void</span> <span class="n">preInit</span><span class="p">(</span><span class="n">FMLPreInitializationEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="o">.</span><span class="n">preInit</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="n">public</span> <span class="n">void</span> <span class="n">init</span><span class="p">(</span><span class="n">FMLInitializationEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>你的Mod最基本的已经配置完成，很快我们将做出第一个物品。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../item/index.html" class="btn btn-neutral float-right" title="物品" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="02_mainclass.html" class="btn btn-neutral float-left" title="2. 主类" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, squid233
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
