@@ -64,7 +64,3 @@ VERSION就不必解释了。接下来我们在\ ``public static final String VER
    private static CommonProxy proxy;
 
 接下来在主类的\ ``preInit``\ 方法中加上\ ``proxy.preInit(event);``\ ，在\ ``init``\ 方法中加上\ ``proxy.init(event);``\ 。
-
---------------
-
-你的Mod最基本的已经配置完成，很快我们将做出第一个物品。

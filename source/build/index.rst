@@ -10,4 +10,4 @@
    01_jdkdownload
    02_idedownload
    03_forgemdkdownload
-   04_build.rst
+   04_build

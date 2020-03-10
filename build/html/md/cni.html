@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Minecraft 1.12.2 Forge Mod 开发教程-Sphinx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainclass/index.html">主类、Mod信息与代理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../item/index.html">物品</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Minecraft 1.12.2 Forge Mod 开发教程-Sphinx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/md/cni.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>#物品
+##创建物品
+如果你想偷懒，直接<code class="docutils literal notranslate"><span class="pre">Item</span> <span class="pre">item</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">Item();</span></code>就可以了。但是这只适用于那些无功能的物品，如钻石。我们要做的是一个有功能的物品。</p>
+<p>###新建物品类
+就拿<code class="docutils literal notranslate"><span class="pre">Bubble</span></code>当例子吧。<br />由于大部分的物品都继承于<code class="docutils literal notranslate"><span class="pre">Item</span></code>类，所以我们也要写一个类来<strong>继承</strong>它。<br />首先，新建<code class="docutils literal notranslate"><span class="pre">com.example.examplemod.common.item.ItemBubble</span></code>类。<br />然后，粘贴：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">private</span> <span class="n">static</span> <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;bubble&quot;</span><span class="p">;</span>
+<span class="n">public</span> <span class="n">ItemBubble</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setRegistryName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setUnlocalizedName</span><span class="p">(</span><span class="n">ExampleMod</span><span class="o">.</span><span class="n">MODID</span><span class="o">+</span><span class="s2">&quot;.&quot;</span><span class="o">+</span><span class="n">name</span><span class="p">);</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setCreativeTab</span><span class="p">(</span><span class="n">CreativeTabs</span><span class="o">.</span><span class="n">MISC</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">setRegistryName</span></code>：设置物品的注册名称<br /><code class="docutils literal notranslate"><span class="pre">setUnlocalizedName</span></code>:设置物品的未本地化名称<br /><code class="docutils literal notranslate"><span class="pre">setCreativeTab</span></code>:设置物品的创造模式物品栏位置<br />现在我们需要注册这个物品。</p>
+<p>###注册物品
+新建<code class="docutils literal notranslate"><span class="pre">com.example.examplemod.register.ItemsRegister</span></code>类。<br />首先在<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">class</span> <span class="pre">ItemsRegister</span></code>上面添加<code class="docutils literal notranslate"><span class="pre">&#64;Mod.EventBusSubscriber</span></code>。<br />然后添加<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">final</span> <span class="pre">Item</span> <span class="pre">BUBBLE</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">ItemBubble();</span></code>。
+创建一个构造方法。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">ItemsRegister</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">MinecraftForge</span><span class="o">.</span><span class="n">EVENT_BUS</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里我们不使用古老的<code class="docutils literal notranslate"><span class="pre">GameRegistry</span></code>方法来注册物品，而是使用Forge推荐的注册方法。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@SubscribeEvent</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">registerItems</span><span class="p">(</span><span class="n">RegistryEvent</span><span class="o">.</span><span class="n">Register</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">getRegistry</span><span class="p">()</span><span class="o">.</span><span class="n">registerAll</span><span class="p">(</span>
+                <span class="n">BUBBLE</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>你还可以在<code class="docutils literal notranslate"><span class="pre">BUBBLE</span></code>的下面添加更多的物品，只要确保你用<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">final</span> <span class="pre">Item</span> <span class="pre">xxx</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">ItemXXX();</span></code>声明了一个物品并创建了对应的类，以及每个物品之间用了逗号隔开。</p>
+<p>最后我们只需要在<code class="docutils literal notranslate"><span class="pre">CommonProxy</span></code>类中的的<code class="docutils literal notranslate"><span class="pre">preInit</span></code>方法中<code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">ItemsRegister()</span></code>即可。</p>
+<p>现在物品已经成功注册了，运行游戏看一下效果：
+<img alt="image1.png" src="https://i.loli.net/2020/03/08/Ep8eNIfdmGD9iRK.png" /><br />已经可以在创造模式物品栏的杂项中找到了。</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, squid233
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

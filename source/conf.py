@@ -30,7 +30,9 @@ release = '1.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["sphinx_rtd_theme"
+extensions = ['sphinx_rtd_theme',
+              'recommonmark',
+              'sphinx_markdown_tables'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -63,3 +65,10 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 master_doc = 'index'
+
+# source_suffix = '.rst'
+from recommonmark.parser import CommonMarkParser
+source_parsers = {
+    #'.md': CommonMarkParser,
+}
+source_suffix = ['.rst', '.md']
