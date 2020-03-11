@@ -205,6 +205,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Forge提供了大量的注册表，其中包括<code class="docutils literal notranslate"><span class="pre">Item</span></code>、<code class="docutils literal notranslate"><span class="pre">Block</span></code>、<code class="docutils literal notranslate"><span class="pre">Biome</span></code>等等。这些我们会在后面讲到。</p>
 <p>你还可以在<code class="docutils literal notranslate"><span class="pre">BUBBLE</span></code>的下面添加更多的物品，只要确保你用<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">final</span> <span class="pre">Item</span> <span class="pre">xxx</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">ItemXXX();</span></code>声明了一个物品并创建了对应的类，以及每个物品之间用了逗号隔开。</p>
 <p>最后我们只需要在<code class="docutils literal notranslate"><span class="pre">CommonProxy</span></code>类中的的<code class="docutils literal notranslate"><span class="pre">preInit</span></code>方法中<code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">ItemsRegister()</span></code>即可。</p>
 <div class="line-block">

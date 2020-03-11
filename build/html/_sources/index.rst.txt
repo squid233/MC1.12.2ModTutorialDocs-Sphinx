@@ -9,6 +9,10 @@ Minecraft 1.12.2 Forge Mod 开发教程重写版
 | 说实话在我重写时再看一遍自己写的文章完全看不懂……所以我就重写了一遍。
 | 欢迎加群讨论哦！
 
+`Forge官方中文文档`_
+
+.. _Forge官方中文文档: https://mcforge-cn.readthedocs.io/zh/latest/
+
 |MC1.12.2Mod技术交流咨询|
 
 .. |MC1.12.2Mod技术交流咨询| image:: https://pub.idqqimg.com/wpa/images/group.png

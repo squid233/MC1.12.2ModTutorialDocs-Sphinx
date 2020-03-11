@@ -50,6 +50,8 @@
        );
    }
 
+Forge提供了大量的注册表，其中包括\ ``Item``\、\ ``Block``\、\ ``Biome``\等等。这些我们会在后面讲到。
+
 你还可以在\ ``BUBBLE``\ 的下面添加更多的物品，只要确保你用\ ``public static final Item xxx = new ItemXXX();``\ 声明了一个物品并创建了对应的类，以及每个物品之间用了逗号隔开。
 
 最后我们只需要在\ ``CommonProxy``\ 类中的的\ ``preInit``\ 方法中\ ``new ItemsRegister()``\ 即可。

@@ -4,7 +4,7 @@
 这一章介绍了如何添加物品、注册物品以及给物品添加更多功能。
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :numbered: 2
 
    01_createnewitem
