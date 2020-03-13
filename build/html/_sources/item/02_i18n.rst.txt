@@ -42,7 +42,7 @@
 制作一个语言文件
 ----------------
 
-1. 在\ ``assets/[modid]/lang``\创建两个个文件\ ``en_us.lang``\和\ ``zh_cn.lang``\。在这里为\ ``assets/exeamplemod/lang``\。
+1. 在\ ``assets/[modid]/lang``\创建两个文件\ ``en_us.lang``\和\ ``zh_cn.lang``\。在这里为\ ``assets/exeamplemod/lang``\。
 
 2. 在\ ``en_us``\写入\ ``item.exeamplemod.bubble.name=Bubble``\
 

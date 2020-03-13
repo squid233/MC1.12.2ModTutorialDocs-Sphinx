@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 添加物品贴图 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="2. 本地化与国际化" href="02_i18n.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Minecraft 1.12.2 Forge Mod 开发教程-Sphinx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainclass/index.html">主类、Mod信息与代理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">物品</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_i18n.html">2. 本地化与国际化</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 添加物品贴图</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.1. 注册物品材质</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Minecraft 1.12.2 Forge Mod 开发教程-Sphinx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">物品</a> &raquo;</li>
+        
+      <li><span class="section-number">3. </span>添加物品贴图</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/item/03_addtextures.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">3. </span>添加物品贴图<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>物品已经翻译好了，接下来就该添加物品材质了。</p>
+<p>首先创建文件夹<code class="docutils literal notranslate"><span class="pre">assets/[modid]/textures/items</span></code>，将<code class="docutils literal notranslate"><span class="pre">bubble.png</span></code>放进去： <img alt="image1.png" src="https://i.loli.net/2020/03/13/8xAYFLp9vRQ7mCw.png" /></p>
+<p>之后还需要创建文件<code class="docutils literal notranslate"><span class="pre">assets/[modid]/models/item/bubble.json</span></code>。文件的内容如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="s2">&quot;minecraft:item/generated&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;textures&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;layer0&quot;</span><span class="p">:</span> <span class="s2">&quot;examplemod:items/bubble&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">item/generated</span></code>：使用默认的物品渲染方式</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">layer0</span></code>：使用第0层图层</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examplemod:items/bubble</span></code>：寻找assets文件夹下的examplemod下的textures下的items下的bubble.png（好长</p></li>
+</ul>
+<p>现在物品模型渲染文件也做好了，接下来，到注册材质的时候了。</p>
+<div class="section" id="id2">
+<h2><span class="section-number">3.1. </span>注册物品材质<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="line-block">
+<div class="line">要注册材质，我们首先在register文件夹下新建<code class="docutils literal notranslate"><span class="pre">ModelsRegister</span></code>类。</div>
+<div class="line">然后我们需要输入</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">ModelsRegister</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">MinecraftForge</span><span class="o">.</span><span class="n">EVENT_BUS</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>注：这次不需要在开头加上注解了。</p>
+<p>接着我们需要</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@SubscribeEvent</span>
+<span class="n">public</span> <span class="n">void</span> <span class="n">registerModels</span><span class="p">(</span><span class="n">ModelRegistryEvent</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">registerModel</span><span class="p">(</span><span class="n">ItemsRegister</span><span class="o">.</span><span class="n">BUBBLE</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="n">private</span> <span class="n">void</span> <span class="n">registerModel</span><span class="p">(</span><span class="n">Item</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ModelLoader</span><span class="o">.</span><span class="n">setCustomModelResourceLocation</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">new</span> <span class="n">ModelResourceLocation</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">getRegistryName</span><span class="p">(),</span> <span class="s2">&quot;inventory&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">registerModel(ItemsRegister.BUBBLE);</span></code>：调用<code class="docutils literal notranslate"><span class="pre">registerModel</span></code>方法注册物品材质，BUBBLE可以换成其他的已经注册的物品</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ModelLoader.setCustomModelResourceLocation(item,</span> <span class="pre">0,</span> <span class="pre">new</span> <span class="pre">ModelResourceLocation(item.getRegistryName(),</span> <span class="pre">&quot;inventory&quot;));</span></code>：注册物品模型。0是Metadata。其中”inventory”一般不需要更改。</p></li>
+</ul>
+<p><strong>不要把方法名搞混了！</strong></p>
+<div class="line-block">
+<div class="line">物品模型已经注册完成，你只需要在**ClientProxy**类中的<code class="docutils literal notranslate"><span class="pre">preInit</span></code>方法中<code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">ModelsRegister();</span></code>即可。</div>
+<div class="line">让我们进游戏看一下吧：</div>
+</div>
+<p><img alt="image2.png" src="https://i.loli.net/2020/03/13/6p73BQtGgNmwLnD.png" /></p>
+<p><img alt="image3.png" src="https://i.loli.net/2020/03/13/BvRgIAJLGc1srhe.png" /></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="02_i18n.html" class="btn btn-neutral float-left" title="2. 本地化与国际化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, squid233
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
