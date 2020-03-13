@@ -8,3 +8,4 @@
    :numbered: 2
 
    01_createnewitem
+   02_i18n

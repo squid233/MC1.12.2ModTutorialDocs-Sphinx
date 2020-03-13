@@ -47,15 +47,6 @@
 ![image1.png](https://i.loli.net/2020/03/08/Ep8eNIfdmGD9iRK.png)  
 已经可以在创造模式物品栏的杂项中找到了。  
 
-###国际化与本地化
-现在这个物品还没有材质和翻译，所以我们要添加语言文件还有材质文件。
-在Resources文件夹下创建一个文件：assets\modid\lang\en_us.lang  
-其中modid是你的Mod的ID。  
-在en_us.lang中添加如下一行：
-`item.examplemod.bubble.name=Bubble`
-
-既然是中国的，那么肯定也要有zh_cn.lang。添加好后，物品就翻译完成了。
-
 ###添加材质贴图
 物品还需要一个材质，因此，我们需要添加材质贴图。  
 首先**在资源管理器中**的assets\examplemod文件夹中新建textures\items文件夹，在里面放入bubble.png文件：

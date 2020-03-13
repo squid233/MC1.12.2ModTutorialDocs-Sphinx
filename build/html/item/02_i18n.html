@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 本地化与国际化 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="1. 创建物品" href="01_createnewitem.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Minecraft 1.12.2 Forge Mod 开发教程-Sphinx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainclass/index.html">主类、Mod信息与代理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">物品</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 本地化与国际化</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.1. 什么是本地化与国际化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 了解一个语言文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.3. 制作一个语言文件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Minecraft 1.12.2 Forge Mod 开发教程-Sphinx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">物品</a> &raquo;</li>
+        
+      <li><span class="section-number">2. </span>本地化与国际化</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/item/02_i18n.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">2. </span>本地化与国际化<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">2.1. </span>什么是本地化与国际化<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p><em>用官方的话说就是</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>国际化, 简称为i18n,是一种可以适用于各种语言的代码设计思路。  本地化是指显示适用于用户语言的文字的过程 。
+
+I18n用 _翻译密钥(translation keys)_实现。 翻译密钥是一个字符串，用于标识一段没有特定语言的可显示文本。 例如, 翻译密钥tile.dirt.name指的是泥土方块的名字。 这样，可以引用可显示的文本而不关心特定语言。 加入新语言时，代码不需要修改。
+
+本地化将在游戏的本地设置中发生。 在Minecraft客户端中，位置由语言设置指定。 在专用服务器上，唯一受支持的语言环境是en_US。 可以在 Minecraft Wiki上找到可用语言环境的列表。
+</pre></div>
+</div>
+<p>因为Minecraft是一个面向全世界的游戏，我们不能忽视 Minecraft 的玩家来自世界各地，他们使用不同的语言。为了让更多人可以游玩这个游戏，所以Minecraft添加了引入了国际化与本地化支持。本地化大部分时间是在翻译外国作品，而这些翻译必须要考虑到地区差异。正如同酒石酸菌说的一样，本地化MOD不要使用机翻，这会使得翻译不准确或无法理解，所以我们在翻译是应该考虑本地人民的语言习惯以及在游戏中实质的作用。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">2.2. </span>了解一个语言文件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>我说了那么多，但是我们是来翻译MOD的，我们要知道怎么给我们的MOD创建出来一个语言文件以方便其他人对你的MOD进行翻译。</p>
+<div class="line-block">
+<div class="line">如果你按照之前的步骤注册出了一个物品，那么你会发现那个物品的名字不对。它的名字叫<code class="docutils literal notranslate"><span class="pre">item.exeamplemod.bubble.name</span></code></div>
+<div class="line">这个名字是在创建物品时<code class="docutils literal notranslate"><span class="pre">this.setUnlocalizedName(ExampleMod.MODID+&quot;.&quot;+name)</span></code>这个语句进行定义的。由此我们可以知道它的名字叫<code class="docutils literal notranslate"><span class="pre">MODID.物品名.name</span></code>再加上Minecraft的物品前缀<code class="docutils literal notranslate"><span class="pre">item</span></code>，就是他的的本地化名称。如果你实在不知道它的本地化名称，你也可以进入游戏查看它的名称得知它的本地化命名。</div>
+</div>
+<p>我们在<code class="docutils literal notranslate"><span class="pre">assets/[modid]/lang</span></code>创建一个文件``en_us.lang``。这里需要注意不是``en_US``,因为1.11 开始，资源包格式版本号更新到了 3。自此，资源包中所有文件名强制使用 __小写字母__ <code class="docutils literal notranslate"><span class="pre">（正则表达式</span> <span class="pre">[a-z0-9_]+）</span></code>。所以你应该使用的是``en_us.lang``。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 23%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>资源包格式版本</p></th>
+<th class="head"><p>文件名</p></th>
+<th class="head"><p>Minecraft 版本</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>en_US.lang</p></td>
+<td><p>1.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>en_US.lang</p></td>
+<td><p>1.8</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>en_US.lang</p></td>
+<td><p>1.11</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>en_us.lang</p></td>
+<td><p>1.13</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>en_us.lang</p></td>
+<td><p>1.15</p></td>
+</tr>
+</tbody>
+</table>
+<p>到这里你可能会疑惑，我们是中国为什么我们要创建``en_us.lang``而不是``zh_cn.lang``。在这里我们只是以``en_us.lang``为示例，``zh_cn.lang``同理,在此我推荐你们创建两个语言文件``en_us``和``zh_cn``。</p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">2.3. </span>制作一个语言文件<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>在<code class="docutils literal notranslate"><span class="pre">assets/[modid]/lang</span></code>创建两个个文件<code class="docutils literal notranslate"><span class="pre">en_us.lang</span></code>和<code class="docutils literal notranslate"><span class="pre">zh_cn.lang</span></code>。在这里为<code class="docutils literal notranslate"><span class="pre">assets/exeamplemod/lang</span></code>。</p></li>
+<li><p>在<code class="docutils literal notranslate"><span class="pre">en_us</span></code>写入<code class="docutils literal notranslate"><span class="pre">item.exeamplemod.bubble.name=Bubble</span></code></p>
+<p>在<code class="docutils literal notranslate"><span class="pre">zh_cn</span></code>写入<code class="docutils literal notranslate"><span class="pre">item.exeamplemod.bubble.name=泡泡</span></code></p>
+<p>并保存文件</p>
+</li>
+<li><p>重启游戏，进入游戏你就可以看到你的翻译了。</p></li>
+</ol>
+<p><img alt="image.png" src="https://i.loli.net/2020/03/13/V5IqYn8QKuN6sC9.png" /></p>
+<p>######如果你有闲功夫，可以考虑去酒石酸菌的1.12.2的通用汉化项目看看，如果有兴趣请点击 <a class="reference external" href="https://cfpa.team/">这里</a> 。</p>
+<p>本文大部分内容都由 <strong>吃货一枚</strong> 提供</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="01_createnewitem.html" class="btn btn-neutral float-left" title="1. 创建物品" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, squid233
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
