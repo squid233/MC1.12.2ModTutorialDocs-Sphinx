@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="3. 添加物品贴图" href="03_addtextures.html" />
     <link rel="prev" title="1. 创建物品" href="01_createnewitem.html" /> 
 </head>
 
@@ -83,16 +84,15 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mainclass/index.html">主类、Mod信息与代理</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">物品</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 本地化与国际化</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">2.1. 什么是本地化与国际化</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 了解一个语言文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">2.3. 制作一个语言文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 本地化与国际化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 什么是本地化与国际化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 了解一个语言文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.3. 制作一个语言文件</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="03_addtextures.html">3. 添加物品贴图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_addfood.html">4. 添加食物</a></li>
 </ul>
 
             
@@ -138,7 +138,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">物品</a> &raquo;</li>
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
         
       <li><span class="section-number">2. </span>本地化与国际化</li>
     
@@ -180,7 +180,7 @@ I18n用 _翻译密钥(translation keys)_实现。 翻译密钥是一个字符串
 <div class="line">如果你按照之前的步骤注册出了一个物品，那么你会发现那个物品的名字不对。它的名字叫<code class="docutils literal notranslate"><span class="pre">item.exeamplemod.bubble.name</span></code></div>
 <div class="line">这个名字是在创建物品时<code class="docutils literal notranslate"><span class="pre">this.setUnlocalizedName(ExampleMod.MODID+&quot;.&quot;+name)</span></code>这个语句进行定义的。由此我们可以知道它的名字叫<code class="docutils literal notranslate"><span class="pre">MODID.物品名.name</span></code>再加上Minecraft的物品前缀<code class="docutils literal notranslate"><span class="pre">item</span></code>，就是他的的本地化名称。如果你实在不知道它的本地化名称，你也可以进入游戏查看它的名称得知它的本地化命名。</div>
 </div>
-<p>我们在<code class="docutils literal notranslate"><span class="pre">assets/[modid]/lang</span></code>创建一个文件``en_us.lang``。这里需要注意不是``en_US``,因为1.11 开始，资源包格式版本号更新到了 3。自此，资源包中所有文件名强制使用 __小写字母__ <code class="docutils literal notranslate"><span class="pre">（正则表达式</span> <span class="pre">[a-z0-9_]+）</span></code>。所以你应该使用的是``en_us.lang``。</p>
+<p>我们在<code class="docutils literal notranslate"><span class="pre">assets/[modid]/lang</span></code>创建一个文件<code class="docutils literal notranslate"><span class="pre">en_us.lang</span></code>。这里需要注意不是<code class="docutils literal notranslate"><span class="pre">en_US</span></code>,因为1.11 开始，资源包格式版本号更新到了 3。自此，资源包中所有文件名强制使用 <em>小写字母</em> <code class="docutils literal notranslate"><span class="pre">（正则表达式</span> <span class="pre">[a-z0-9_]+）</span></code>。所以你应该使用的是<code class="docutils literal notranslate"><span class="pre">en_us.lang</span></code>。</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 39%" />
@@ -241,6 +241,8 @@ I18n用 _翻译密钥(translation keys)_实现。 翻译密钥是一个字符串
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="03_addtextures.html" class="btn btn-neutral float-right" title="3. 添加物品贴图" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="01_createnewitem.html" class="btn btn-neutral float-left" title="1. 创建物品" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

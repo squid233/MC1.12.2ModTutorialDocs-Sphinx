@@ -45,4 +45,10 @@
 
 现在物品已经成功注册了，运行游戏看一下效果：
 ![image1.png](https://i.loli.net/2020/03/08/Ep8eNIfdmGD9iRK.png)  
-已经可以在创造模式物品栏的杂项中找到了。
+已经可以在创造模式物品栏的杂项中找到了。  
+
+###添加材质贴图
+物品还需要一个材质，因此，我们需要添加材质贴图。  
+首先**在资源管理器中**的assets\examplemod文件夹中新建textures\items文件夹，在里面放入bubble.png文件：
+![bubble.png](https://i.loli.net/2020/03/11/ZOWQcxkv6zhFTmS.png)  
+接着，
