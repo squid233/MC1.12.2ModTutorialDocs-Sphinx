@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>合成 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  <title>5. 合成 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
   
 
   
@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" /> 
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="4. 添加食物" href="04_addfood.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -79,13 +80,32 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mainclass/index.html">主类、Mod信息与代理</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_i18n.html">2. 本地化与国际化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_addtextures.html">3. 添加物品贴图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_addfood.html">4. 添加食物</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">物品</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_i18n.html">2. 本地化与国际化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_addtextures.html">3. 添加物品贴图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_addfood.html">4. 添加食物</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 合成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 加载配方</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.2. 配方文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#type">类型 (Type)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#groups">组 (Groups)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5.3. 配方的类型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">有序合成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">无序合成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">烧炼</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#todo">6. TODO</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -131,7 +151,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>合成</li>
+          <li><a href="index.html">物品</a> &raquo;</li>
+        
+      <li><span class="section-number">5. </span>合成</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,10 +173,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>合成<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1><span class="section-number">5. </span>合成<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <p>随着Minecraft 1.12的更新,Mojang引入了一种基于JSON文件的新型数据驱动的合成系统。在那之后Forge也改成了这个，Minecraft 1.13中拓展成了数据包。</p>
 <div class="section" id="id2">
-<h2>加载配方<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2><span class="section-number">5.1. </span>加载配方<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <p>Forge会加载在<code class="docutils literal notranslate"><span class="pre">./assets/&lt;modid&gt;/recipes/</span></code>目录下的所有配方。你可以随意调用这些文件，考虑到原版约定是在输出物品之后命名它们。 此名称也用作注册密钥，但不影响配方的操作。</p>
 <div class="line-block">
 <div class="line">提示:</div>
@@ -162,7 +184,7 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h2>配方文件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<h2><span class="section-number">5.2. </span>配方文件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>一个基本的配方文件应该如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;minecraft:crafting_shaped&quot;</span><span class="p">,</span>
@@ -205,7 +227,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2>配方的类型<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<h2><span class="section-number">5.3. </span>配方的类型<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>这样的话，我们可以仔细看一下有序合成和无序合成定义上的区别。</p>
 <div class="section" id="id5">
 <h3>有序合成<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
@@ -244,7 +266,7 @@
 </div>
 </div>
 <div class="section" id="todo">
-<h1>TODO<a class="headerlink" href="#todo" title="永久链接至标题">¶</a></h1>
+<h1><span class="section-number">6. </span>TODO<a class="headerlink" href="#todo" title="永久链接至标题">¶</a></h1>
 </div>
 
 
@@ -252,6 +274,13 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="04_addfood.html" class="btn btn-neutral float-left" title="4. 添加食物" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

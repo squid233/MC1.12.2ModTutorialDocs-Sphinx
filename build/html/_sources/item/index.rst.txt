@@ -11,3 +11,4 @@
    02_i18n
    03_addtextures
    04_addfood
+   05_addrecipes
