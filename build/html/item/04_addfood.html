@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="5. 合成(WIP)" href="05_addrecipes.html" />
+    <link rel="next" title="&lt;no title&gt;" href="05_addrecipes.html" />
     <link rel="prev" title="3. 添加物品贴图" href="03_addtextures.html" /> 
 </head>
 
@@ -88,9 +88,10 @@
 <li class="toctree-l2"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_i18n.html">2. 本地化与国际化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_addtextures.html">3. 添加物品贴图</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 添加食物</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_addrecipes.html">5. 合成(WIP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_addrecipes.html#todo">6. TODO</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 添加食物</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 示例</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -214,6 +215,41 @@ protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) 
 <p>将这些替换成你想要的数据，就可以了。</p>
 <p>注意：一定要将食物类继承ItemFood类！</p>
 <p>饮料同理。</p>
+<div class="section" id="id2">
+<h2><span class="section-number">4.1. </span>示例<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>package com.example.examplemod.common.item;
+
+import com.example.examplemod.ExampleMod;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+public class ItemFoodChestnut extends ItemFood {
+    public ItemFoodChestnut() {
+        super(1, 0.6f, false);
+        String name = &quot;chestnut&quot;;
+        this.setRegistryName(name).setUnlocalizedName(ExampleMod.MODID+&quot;.&quot;+name).setCreativeTab(CreativeTabs.FOOD);
+        this.setAlwaysEdible();
+    }
+
+    @ParametersAreNonnullByDefault
+    @Override
+    protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
+        if (!worldIn.isRemote) {
+            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 1000000, 255));
+        }
+        super.onFoodEaten(stack, worldIn, player);
+    }
+}
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -224,7 +260,7 @@ protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="05_addrecipes.html" class="btn btn-neutral float-right" title="5. 合成(WIP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="05_addrecipes.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="03_addtextures.html" class="btn btn-neutral float-left" title="3. 添加物品贴图" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

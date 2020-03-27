@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5. 合成(WIP) &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  <title>5. 合成 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
   
 
   
@@ -88,22 +88,15 @@
 <li class="toctree-l2"><a class="reference internal" href="02_i18n.html">2. 本地化与国际化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_addtextures.html">3. 添加物品贴图</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_addfood.html">4. 添加食物</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 合成(WIP)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">5.1. 加载配方</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">5.2. 配方文件</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#type">类型 (Type)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#groups">组 (Groups)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 合成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 简单的配方文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">合成类型</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">5.3. 配方的类型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">有序合成</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">无序合成</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">烧炼</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">5.2. 加载配方</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">5.3. 熔炼</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#todo">6. TODO</a></li>
 </ul>
 </li>
 </ul>
@@ -153,7 +146,7 @@
         
           <li><a href="index.html">物品</a> &raquo;</li>
         
-      <li><span class="section-number">5. </span>合成(WIP)</li>
+      <li><span class="section-number">5. </span>合成</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -172,101 +165,92 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="wip">
-<h1><span class="section-number">5. </span>合成(WIP)<a class="headerlink" href="#wip" title="永久链接至标题">¶</a></h1>
-<p>随着Minecraft 1.12的更新,Mojang引入了一种基于JSON文件的新型数据驱动的合成系统。在那之后Forge也改成了这个，Minecraft 1.13中拓展成了数据包。</p>
-<div class="section" id="id1">
-<h2><span class="section-number">5.1. </span>加载配方<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
-<p>Forge会加载在<code class="docutils literal notranslate"><span class="pre">./assets/&lt;modid&gt;/recipes/</span></code>目录下的所有配方。你可以随意调用这些文件，考虑到原版约定是在输出物品之后命名它们。 此名称也用作注册密钥，但不影响配方的操作。</p>
-<div class="line-block">
-<div class="line">提示:</div>
-<div class="line">配方文件不能以下划线开头，因为这是为静态文件保留的。 JSON文件扩展名是必需的。</div>
-</div>
-</div>
+  <div class="section" id="id1">
+<h1><span class="section-number">5. </span>合成<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
-<h2><span class="section-number">5.2. </span>配方文件<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<p>一个基本的配方文件应该如下:</p>
+<h2><span class="section-number">5.1. </span>简单的配方文件<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>一个简单的有序合成配方应该如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;minecraft:crafting_shaped&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;pattern&quot;</span><span class="p">:</span>
-    <span class="p">[</span>
-        <span class="s2">&quot;xxa&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;x x&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;xxx&quot;</span>
+    <span class="s2">&quot;pattern&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;xax&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;xxx&quot;</span>
     <span class="p">],</span>
-    <span class="s2">&quot;key&quot;</span><span class="p">:</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;x&quot;</span><span class="p">:</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;forge:ore_dict&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;ore&quot;</span><span class="p">:</span> <span class="s2">&quot;gemDiamond&quot;</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;a&quot;</span><span class="p">:</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="s2">&quot;mymod:myfirstitem&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">1</span>
-        <span class="p">}</span>
+    <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="s2">&quot;minecraft:water_bucket&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;forge:ore_dict&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;ore&quot;</span><span class="p">:</span> <span class="s2">&quot;gemDiamond&quot;</span>
+            <span class="p">}</span>
     <span class="p">},</span>
-    <span class="s2">&quot;result&quot;</span><span class="p">:</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="s2">&quot;mymod:myitem&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
-        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="s2">&quot;examplemod:bubble&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">9</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="type">
-<h3>类型 (Type)<a class="headerlink" href="#type" title="永久链接至标题">¶</a></h3>
-<p>合成的类型。你可以把它当作定义用哪一种合成布局，例如 <code class="docutils literal notranslate"><span class="pre">minecraft:crafting_shaped</span></code>(有序合成)或 <code class="docutils literal notranslate"><span class="pre">minecraft:crafting_shapeless</span></code>(无序合成)。</p>
-<p>你也可以定义你自己的合成类型，只需要使用_factories.json文件。</p>
-</div>
-<div class="section" id="groups">
-<h3>组 (Groups)<a class="headerlink" href="#groups" title="永久链接至标题">¶</a></h3>
-<p>你还可以把你的配方增加到一个组里，这样可以在合成帮助接口里一起显示。group字符串相同的配方会放在同一个组里。例如，这可以用于所有的门的合成配方，这样即使有很多种不同的门，在合成帮助里只会有一个条目。</p>
-</div>
-</div>
+<p>这个配方允许你用8个水桶来合成9个泡泡。</p>
 <div class="section" id="id3">
-<h2><span class="section-number">5.3. </span>配方的类型<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>这样的话，我们可以仔细看一下有序合成和无序合成定义上的区别。</p>
+<h3>合成类型<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>你可以把它当作定义用哪一种合成布局，例如<code class="docutils literal notranslate"><span class="pre">minecraft:crafting_shaped</span></code>(有序合成)或<code class="docutils literal notranslate"><span class="pre">minecraft:crafting_shapeless</span></code>(无序合成)。</p>
+<p>你也可以定义你自己的合成类型，只需要使用_factories.json文件。</p>
 <div class="section" id="id4">
-<h3>有序合成<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
-<p>有序合成需要<code class="docutils literal notranslate"><span class="pre">pattern</span></code>和<code class="docutils literal notranslate"><span class="pre">key</span></code>两个关键字。<code class="docutils literal notranslate"><span class="pre">pattern</span></code>定义物品的排序，它必须以占位符的形式。每一个物品你都可以选择任意的一个字符作为占位符。而key定义了占位符对应的物品。可以添加附加属性<code class="docutils literal notranslate"><span class="pre">forge:ore_dict</span></code>，它可以定义物品是矿物词典的一部分。例如，无论什么铜矿都可以生成铜锭。要这样的效果的话，要用<code class="docutils literal notranslate"><span class="pre">ore</span></code>标签定义物品，而不是用<code class="docutils literal notranslate"><span class="pre">item</span></code>定义那个物品。默认有很多这样的类型，你也可以自己定义。<code class="docutils literal notranslate"><span class="pre">data</span></code>是一个可选标签，用于定义方块或物品的metadata。</p>
-<div class="line-block">
-<div class="line">重要</div>
-<div class="line">用了<code class="docutils literal notranslate"><span class="pre">setHasSubtypes(true)</span></code>的物品必须要<code class="docutils literal notranslate"><span class="pre">data</span></code>字段。如果不用，那么意味着有着任何metadata的该物品都可以用于合成。例如，不定义剑的数据意味着用了一半的剑也可以用于合成!</div>
-</div>
+<h4>有序合成<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>有序合成需要<code class="docutils literal notranslate"><span class="pre">pattern</span></code>和<code class="docutils literal notranslate"><span class="pre">key</span></code>两个关键字。</p>
+<p><code class="docutils literal notranslate"><span class="pre">pattern</span></code>定义物品的排序，它必须是占位符的形式。每一个物品你都可以选择任意的一个字符作为占位符。</p>
+<p><code class="docutils literal notranslate"><span class="pre">key</span></code>定义了占位符对应的物品。可以添加附加属性<code class="docutils literal notranslate"><span class="pre">forge:ore_dict</span></code>，它可以定义物品是矿物词典的一部分。例如，无论什么铜矿都可以生成铜锭。要这样的效果的话，要用<code class="docutils literal notranslate"><span class="pre">ore</span></code>标签定义物品，而不是用<code class="docutils literal notranslate"><span class="pre">item</span></code>定义那个物品。</p>
+<p>默认有很多这样的类型，你也可以自己定义。</p>
+<p><code class="docutils literal notranslate"><span class="pre">data</span></code>是一个可选标签，用于定义方块或物品的<code class="docutils literal notranslate"><span class="pre">metadata</span></code>。</p>
 </div>
 <div class="section" id="id5">
-<h3>无序合成<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<h4>无序合成<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
 <p>无序合成不需要<code class="docutils literal notranslate"><span class="pre">pattern</span></code>和<code class="docutils literal notranslate"><span class="pre">key</span></code>关键字。</p>
 <p>要定义一个无序合成，你要使用<code class="docutils literal notranslate"><span class="pre">ingredients</span></code>列表。它定义了合成中要用的物品，也可以用<code class="docutils literal notranslate"><span class="pre">forge:ore_dict</span></code>它函数式的声明在上方。默认有很多这样的类型，你也可以自己定义。它甚至可以一个对象定义多个实例，意味着合成时必须要在合成台里放多个这样的物品。</p>
-<div class="line-block">
-<div class="line">提示</div>
-<div class="line">你的配方里有多少ingredients没有限制，原版合成台没有只允许一个合成里放9个物品。</div>
-</div>
-<p>下面这个例子展示了ingredients在JSON里是什么样的:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ingredients&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;forge:ore_dict&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ore&quot;</span><span class="p">:</span> <span class="s2">&quot;gemDiamond&quot;</span>
+<dl class="simple">
+<dt>提示</dt><dd><p>你的配方里有多少<code class="docutils literal notranslate"><span class="pre">ingredients</span></code>没有限制，原版合成台没有只允许一个合成里放9个物品。</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;crafting_shapeless&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ingredients&quot;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="s2">&quot;examplemod:bubble&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-        <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="s2">&quot;minecraft:nether_star&quot;</span>
+        <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="s2">&quot;examplemod:bubble&quot;</span>
     <span class="p">}</span>
-<span class="p">],</span>
-<span class="o">...</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="s2">&quot;minecraft:diamond&quot;</span><span class="p">,</span>
+
+    <span class="p">}</span>
+    <span class="p">}</span>
 </pre></div>
+</div>
+<p>这个配方允许你用2个泡泡来合成1颗钻石。</p>
+</div>
 </div>
 </div>
 <div class="section" id="id6">
-<h3>烧炼<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
-<p>要定义一个熔炉的烧炼，你要用 <code class="docutils literal notranslate"><span class="pre">GameRegistry.addSmelting(input,</span> <span class="pre">output,</span> <span class="pre">exp);</span></code>，因为烧炼现在不是基于JSON的。</p>
+<h2><span class="section-number">5.2. </span>加载配方<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>只需要将配方文件放到<code class="docutils literal notranslate"><span class="pre">./assets/&lt;modid&gt;/recipes/</span></code> 目录下即可。
+配方文件必须为标准的JSON格式。<a class="reference external" href="http://www.bejson.com/">Be JSON</a> 是一个很好的在线检查JSON格式是否正确的网站。</p>
 </div>
+<div class="section" id="id7">
+<h2><span class="section-number">5.3. </span>熔炼<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>要定义一个熔炼配方，我们只需要用1行代码即可。
+新建一个SmeltingRecipes类，并在里面写上：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">SmeltingRecipes</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">GameRegistry</span><span class="o">.</span><span class="n">addSmelting</span><span class="p">(</span><span class="n">ItemsRegister</span><span class="o">.</span><span class="n">BUBBLE</span><span class="p">,</span> <span class="n">new</span> <span class="n">ItemStack</span><span class="p">(</span><span class="n">ItemsRegister</span><span class="o">.</span><span class="n">BUBBLE</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">0.9</span><span class="n">f</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
 </div>
+<p>这样当你烧完泡泡的时候，就会出现2个泡泡，并获得0.9点经验。</p>
+<p>最后我们只需要在CommonProxy的init方法中new SmeltingRecipes();即可。</p>
 </div>
-<div class="section" id="todo">
-<h1><span class="section-number">6. </span>TODO<a class="headerlink" href="#todo" title="永久链接至标题">¶</a></h1>
 </div>
 
 

@@ -65,3 +65,39 @@ ItemFood类的构造函数有这些：
 注意：一定要将食物类继承ItemFood类！
 
 饮料同理。
+
+示例
+----
+
+::
+
+    package com.example.examplemod.common.item;
+
+    import com.example.examplemod.ExampleMod;
+    import net.minecraft.creativetab.CreativeTabs;
+    import net.minecraft.entity.player.EntityPlayer;
+    import net.minecraft.init.MobEffects;
+    import net.minecraft.item.ItemFood;
+    import net.minecraft.item.ItemStack;
+    import net.minecraft.potion.PotionEffect;
+    import net.minecraft.world.World;
+
+    import javax.annotation.ParametersAreNonnullByDefault;
+
+    public class ItemFoodChestnut extends ItemFood {
+        public ItemFoodChestnut() {
+            super(1, 0.6f, false);
+            String name = "chestnut";
+            this.setRegistryName(name).setUnlocalizedName(ExampleMod.MODID+"."+name).setCreativeTab(CreativeTabs.FOOD);
+            this.setAlwaysEdible();
+        }
+
+        @ParametersAreNonnullByDefault
+        @Override
+        protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
+            if (!worldIn.isRemote) {
+                player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 1000000, 255));
+            }
+            super.onFoodEaten(stack, worldIn, player);
+        }
+    }
