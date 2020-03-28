@@ -12,3 +12,4 @@
    03_addtextures
    04_addfood
    05_addrecipes
+   06_additemstack
