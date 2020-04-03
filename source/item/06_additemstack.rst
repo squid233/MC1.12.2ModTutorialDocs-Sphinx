@@ -15,10 +15,10 @@ ItemStack使用metadata来区分物品。
 ::
 
     Item coals = new Item();
-    ItemStack low_coal = new ItemStack(coals);
-    ItemStack medium_coal = new ItemStack(coals, 1, 1);
-    ItemStack high_coal = new ItemStack(coals, 1, 2);
-    ItemStack super_coal = new ItemStack(coals, 1, 3);
+    public ItemStack low_coal = new ItemStack(coals);
+    public ItemStack medium_coal = new ItemStack(coals, 1, 1);
+    public ItemStack high_coal = new ItemStack(coals, 1, 2);
+    public ItemStack super_coal = new ItemStack(coals, 1, 3);
 
 | coals: 表示该物品属于coals。
 | 数量1: 通常情况下为1。
