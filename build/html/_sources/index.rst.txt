@@ -22,3 +22,4 @@ Minecraft 1.12.2 Forge Mod 开发教程重写版
    build/index
    mainclass/index
    item/index
+   block/index

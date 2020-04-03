@@ -45,3 +45,6 @@ ItemStack使用metadata来区分物品。
 再注册物品和物品贴图就好了。
 
 这样，当我们输入/give @p examplemod:coals 1 1时就会获得medium_coal。
+
+此页待完善。
+------------

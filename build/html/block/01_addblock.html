@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 添加方块 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="方块" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Minecraft 1.12.2 Forge Mod 开发教程-Sphinx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainclass/index.html">主类、Mod信息与代理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../item/index.html">物品</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">方块</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 添加方块</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1. 注册方块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i18n">1.2. I18n</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.3. 添加方块模型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.4. 掉落物</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Minecraft 1.12.2 Forge Mod 开发教程-Sphinx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">方块</a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>添加方块</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/block/01_addblock.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">1. </span>添加方块<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>是时候添加方块了。新建common.block包，并新建ExampleBlock类，然后让ExampleBlock类继承Block类。在里面写上如下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">ExampleBlock</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">Material</span><span class="o">.</span><span class="n">GROUND</span><span class="p">,</span> <span class="n">MapColor</span><span class="o">.</span><span class="n">DIRT</span><span class="p">);</span>
+    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;example_block&quot;</span><span class="p">;</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setRegistryName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">setUnlocalizedName</span><span class="p">(</span><span class="n">ExampleMod</span><span class="o">.</span><span class="n">MODID</span><span class="o">+</span><span class="s2">&quot;.&quot;</span><span class="o">+</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">setCreativeTab</span><span class="p">(</span><span class="n">CreativeTabs</span><span class="o">.</span><span class="n">MISC</span><span class="p">)</span><span class="o">.</span><span class="n">setHardness</span><span class="p">(</span><span class="mf">0.5</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">setResistance</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">setHardness:设置方块硬度。</div>
+<div class="line">setResistance:设置方块爆炸抗性。</div>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">1.1. </span>注册方块<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>我们在register包下新建BlocksRegister类，在里面写上如下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Mod</span><span class="o">.</span><span class="n">EventBusSubscriber</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">BlocksRegister</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="n">Block</span> <span class="n">EXAMPLE_BLOCK</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ExampleBlock</span><span class="p">();</span>
+
+    <span class="n">public</span> <span class="n">BlocksRegister</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">MinecraftForge</span><span class="o">.</span><span class="n">EVENT_BUS</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">private</span> <span class="n">static</span> <span class="n">Block</span><span class="p">[]</span> <span class="n">blocks</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">EXAMPLE_BLOCK</span>
+    <span class="p">};</span>
+
+    <span class="nd">@SubscribeEvent</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">registerBlocks</span><span class="p">(</span><span class="n">RegistryEvent</span><span class="o">.</span><span class="n">Register</span><span class="o">&lt;</span><span class="n">Block</span><span class="o">&gt;</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Block</span> <span class="n">block</span> <span class="p">:</span> <span class="n">blocks</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ModelLoader</span><span class="o">.</span><span class="n">setCustomModelResourceLocation</span><span class="p">(</span><span class="n">Item</span><span class="o">.</span><span class="n">getItemFromBlock</span><span class="p">(</span><span class="n">block</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">new</span> <span class="n">ModelResourceLocation</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">getRegistryName</span><span class="p">(),</span> <span class="s2">&quot;inventory&quot;</span><span class="p">));</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">getRegistry</span><span class="p">()</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">block</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nd">@SubscribeEvent</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">registerItemBlocks</span><span class="p">(</span><span class="n">RegistryEvent</span><span class="o">.</span><span class="n">Register</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Block</span> <span class="n">block</span> <span class="p">:</span> <span class="n">blocks</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Item</span> <span class="n">itemBlock</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ItemBlock</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">setRegistryName</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">getRegistryName</span><span class="p">());</span>
+            <span class="n">ModelLoader</span><span class="o">.</span><span class="n">setCustomModelResourceLocation</span><span class="p">(</span><span class="n">itemBlock</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">new</span> <span class="n">ModelResourceLocation</span><span class="p">(</span><span class="n">block</span><span class="o">.</span><span class="n">getRegistryName</span><span class="p">(),</span> <span class="s2">&quot;inventory&quot;</span><span class="p">));</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">getRegistry</span><span class="p">()</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">itemBlock</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>方块就注册完成了。</p>
+</div>
+<div class="section" id="i18n">
+<h2><span class="section-number">1.2. </span>I18n<a class="headerlink" href="#i18n" title="永久链接至标题">¶</a></h2>
+<p>我们在en_us.lang中写上</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tile</span><span class="o">.</span><span class="n">examplemod</span><span class="o">.</span><span class="n">example_block</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">Example</span> <span class="n">Block</span>
+</pre></div>
+</div>
+<p>这样就能看到方块的名字了。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">1.3. </span>添加方块模型<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Blockstate</span><span class="p">:</span> <span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">examplemod</span><span class="o">/</span><span class="n">blockstates</span><span class="o">/</span><span class="n">example_block</span><span class="o">.</span><span class="n">json</span>
+<span class="n">Block</span> <span class="n">Model</span><span class="p">:</span> <span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">examplemod</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="n">example_block</span><span class="o">.</span><span class="n">json</span>
+<span class="n">Item</span> <span class="n">Model</span><span class="p">:</span> <span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">examplemod</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">item</span><span class="o">/</span><span class="n">example_block</span><span class="o">.</span><span class="n">json</span>
+<span class="n">Block</span> <span class="n">Texture</span><span class="p">:</span> <span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">examplemod</span><span class="o">/</span><span class="n">textures</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="n">example_block</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>blockstates/example_block.json</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;variants&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;examplemod:block/example_block&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>models/block/example_block.json</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="s2">&quot;block/cube_all&quot;</span><span class="p">,</span>
+<span class="s2">&quot;textures&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;all&quot;</span><span class="p">:</span> <span class="s2">&quot;examplemod:block/example_block&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>models/item/example_block.json</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="s2">&quot;examplemod:block/example_block&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>textures/block/example_block.png</p>
+<p><img alt="image.png" src="https://i.loli.net/2020/04/03/w8fN3gA6QyVOTo1.png" /></p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">1.4. </span>掉落物<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>在ExampleBlock中添加：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="n">public</span> <span class="n">Item</span> <span class="n">getItemDropped</span><span class="p">(</span><span class="n">IBlockState</span> <span class="n">state</span><span class="p">,</span> <span class="n">Random</span> <span class="n">rand</span><span class="p">,</span> <span class="nb">int</span> <span class="n">fortune</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Item</span><span class="o">.</span><span class="n">getItemFromBlock</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="方块" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, squid233
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
