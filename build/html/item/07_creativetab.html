@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>物品 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
+  <title>7. 创造模式物品栏 &mdash; Minecraft 1.12.2 Forge Mod 开发教程-Sphinx 1.0 文档</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="1. 创建物品" href="01_createnewitem.html" />
-    <link rel="prev" title="3. 示例代码" href="../mainclass/03_examplecode.html" /> 
+    <link rel="next" title="方块" href="../block/index.html" />
+    <link rel="prev" title="6. ItemStack" href="06_additemstack.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,14 +84,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../build/index.html">构建开发环境</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mainclass/index.html">主类、Mod信息与代理</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">物品</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">物品</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_i18n.html">2. 本地化与国际化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_addtextures.html">3. 添加物品贴图</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_addfood.html">4. 添加食物</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_addrecipes.html">5. 合成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_additemstack.html">6. ItemStack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07_creativetab.html">7. 创造模式物品栏</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. 创造模式物品栏</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../block/index.html">方块</a></li>
@@ -140,13 +140,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>物品</li>
+          <li><a href="index.html">物品</a> &raquo;</li>
+        
+      <li><span class="section-number">7. </span>创造模式物品栏</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/item/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/item/07_creativetab.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -160,19 +162,23 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>物品<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<p>这一章介绍了如何添加物品、注册物品以及给物品添加更多功能。</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="01_createnewitem.html">1. 创建物品</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_i18n.html">2. 本地化与国际化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_addtextures.html">3. 添加物品贴图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_addfood.html">4. 添加食物</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_addrecipes.html">5. 合成</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_additemstack.html">6. ItemStack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_creativetab.html">7. 创造模式物品栏</a></li>
-</ul>
+<h1><span class="section-number">7. </span>创造模式物品栏<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>创建CreativeTab类，在里面写上：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">static</span> <span class="n">final</span> <span class="n">CreativeTabs</span> <span class="n">EXAMPLE_CREATIVE_TAB</span> <span class="o">=</span> <span class="n">new</span> <span class="n">CreativeTabs</span><span class="p">(</span><span class="s2">&quot;example&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nd">@SideOnly</span><span class="p">(</span><span class="n">Side</span><span class="o">.</span><span class="n">CLIENT</span><span class="p">)</span>
+    <span class="nd">@Override</span>
+    <span class="n">public</span> <span class="n">ItemStack</span> <span class="n">getTabIconItem</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">new</span> <span class="n">ItemStack</span><span class="p">(</span><span class="n">ItemsRegister</span><span class="o">.</span><span class="n">BUBBLE</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
 </div>
+<p>其中ItemsRegister.BUBBLE是创造模式物品栏的图标。</p>
+<p>完成后把物品改一下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">setCreativeTab</span><span class="p">(</span><span class="n">CreativeTab</span><span class="o">.</span><span class="n">EXAMPLE_CREATIVE_TAB</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>再启动游戏就能看到物品了。</p>
 </div>
 
 
@@ -183,10 +189,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="01_createnewitem.html" class="btn btn-neutral float-right" title="1. 创建物品" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../block/index.html" class="btn btn-neutral float-right" title="方块" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../mainclass/03_examplecode.html" class="btn btn-neutral float-left" title="3. 示例代码" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="06_additemstack.html" class="btn btn-neutral float-left" title="6. ItemStack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

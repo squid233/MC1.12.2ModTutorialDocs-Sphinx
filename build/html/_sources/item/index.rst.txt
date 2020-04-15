@@ -13,3 +13,4 @@
    04_addfood
    05_addrecipes
    06_additemstack
+   07_creativetab
